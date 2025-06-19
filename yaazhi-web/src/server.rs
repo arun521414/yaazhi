@@ -38,6 +38,5 @@ async fn hello() -> impl Responder {
 }
 
 async fn health_check() -> impl Responder {
-    HttpResponse::Ok().body(format!("<h1 style='{}'>Yaazhi Web Server is running! <span>🌟</span></h1>", "color:red"))
+    HttpResponse::Ok().body(format!("<h1 style='{}'>Yaazhi Web Server is running! <span>&#128536;</span> </h1>", "color: green; font-size: 24px;"))
 }
-

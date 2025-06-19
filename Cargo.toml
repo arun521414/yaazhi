@@ -1,0 +1,8 @@
+[workspace]
+members = [
+    "yaazhi-cli",
+    "yaazhi-core", 
+    "yaazhi-runtime",
+    "yaazhi-web"
+]
+

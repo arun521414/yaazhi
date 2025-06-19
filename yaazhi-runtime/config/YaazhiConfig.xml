@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<yaazhi-config>
+
+    <settings>
+        <locale value="en_US"/>
+        <time_zone value="US/Pacific"/>
+        <database_time_zone value="US/Pacific"/>
+    </settings>
+
+     <web-server>
+        <host value="127.0.0.1"/>
+        <port-http value="8080"/>
+        <port-https value=""/>
+        <https-enabled value="false"/>
+        <allow-origins value="*"/>
+        <handle-cors value="true"/>
+    </web-server>
+
+     <databases>
+
+        <data-types>
+            <property name="id" sql-type="VARCHAR(64)"   />
+            <property name="id-long" sql-type="VARCHAR(255)" />
+            <property name="text-indicator" sql-type="CHAR(1)" />
+            <property name="text-short" sql-type="VARCHAR(63)" />
+            <property name="text-medium" sql-type="VARCHAR(255)" />
+            <property name="text-intermediate" sql-type="VARCHAR(1023)" />
+            <property name="text-long" sql-type="VARCHAR(4095)" />
+            <property name="text-very-long" sql-type="CLOB" />
+            <property name="binary-very-long" sql-type="BLOB" />
+            <property name="date" sql-type="DATE" />
+            <property name="date-time" sql-type="TIMESTAMP" />
+            <property name="number-integer" sql-type="NUMERIC(20,0)" />
+            <property name="number-decimal" sql-type="NUMERIC(26,6)" />
+            <property name="number-float" sql-type="DOUBLE" />
+            <property name="currency-amount" sql-type="NUMERIC(24,4)" />
+            <property name="currency-precise" sql-type="NUMERIC(25,5)" />
+        </data-types>
+
+        <connection name="sqlite_dev" type="sqlite">
+            <file-path value="/db/sqlite/yaazhi_dev.sqlite"/>
+            <create-file value="true"/>
+            <read-only value="false"/>
+            <pool max="50" min="5">
+                <timeouts connect="8" acquire="8" idle="8"/>
+                <logging enabled="true" level="debug"/>
+            </pool>
+        </connection>
+
+        <connection name="postgres_prod" type="postgresql">
+            <host value="db-server.example.com"/>
+            <port value="5432"/>
+            <username value="admin"/>
+            <password value="securepassword"/>
+            <database value="yaazhi_prod"/>
+            <pool max="200" min="10">
+                <timeouts connect="5" acquire="5" idle="15"/>
+                <logging enabled="true" level="info"/>
+            </pool>
+        </connection>
+
+        <connection name="mysql_test" type="mysql">
+            <host value="mysql-test.example.com"/>
+            <port value="3306"/>
+            <username value="tester"/>
+            <password value="testpass"/>
+            <database value="yaazhi_test"/>
+            <pool max="100" min="10">
+                <timeouts connect="6" acquire="6" idle="12"/>
+                <logging enabled="true" level="warn"/>
+            </pool>
+        </connection>
+
+        <default name="sqlite_dev" />
+
+     </databases>
+
+
+</yaazhi-config>

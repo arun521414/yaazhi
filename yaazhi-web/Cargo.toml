@@ -1,0 +1,18 @@
+[package]
+name = "yaazhi-web"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+
+yaazhi-core = { path = "../yaazhi-core" }
+yaazhi-runtime = { path = "../yaazhi-runtime" }
+
+actix-web = "4"
+actix-cors = "0.7"
+
+# docs - https://docs.rs/tracing/latest/tracing/index.html
+tracing = "0.1"
+
+# docs - https://docs.rs/tracing-subscriber/latest/tracing_subscriber/index.html
+tracing-subscriber = { version = "0.3", features = ["fmt","chrono" ] }

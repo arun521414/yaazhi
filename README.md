@@ -1,11 +1,15 @@
 # Yaazhi Framework
 
+![Yaazhi Logo](/641554a6-52fa-47fd-b96f-a0da2b88ef64-removebg-preview%20(2).png)
+
 Yaazhi is a modular web framework written in Rust, inspired by the Moqui Framework.  
 It focuses on XML-driven configuration and a clean runtime architecture.
 
 > ⚠️ This project is in its **early stages** and under active development.
 
 ---
+
+
 
 ## Project Structure
 

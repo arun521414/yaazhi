@@ -1,4 +1,4 @@
-use yaazhi_runtime::xml::config::yaazhi_config::{YaazhiConfig, load_config};
+use yaazhi_core::xml::config::yaazhi_config::{YaazhiConfig, load_config};
 use std::error::Error;
 
 mod server;

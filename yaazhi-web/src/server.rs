@@ -2,7 +2,7 @@ use actix_cors::Cors;
 use actix_web::{web, App, HttpResponse, HttpServer, Responder};
 use tracing::{error, info};
 use tracing_subscriber;
-use yaazhi_runtime::xml::config::yaazhi_config::YaazhiConfig;
+use yaazhi_core::xml::config::yaazhi_config::YaazhiConfig;
 
 /// Start the Yaazhi Web Server
 pub async fn start_server(config: YaazhiConfig) -> Result<(), Box<dyn std::error::Error>> {
@@ -29,6 +29,7 @@ pub async fn start_server(config: YaazhiConfig) -> Result<(), Box<dyn std::error
     .await?;
 
     Ok(())
+
 }
 
 /// Health-check endpoint

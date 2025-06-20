@@ -34,4 +34,6 @@ Feel free to explore the codebase and open issues or pull requests.
 
 ---
 
+# Discord https://discord.gg/4KUqWsrvVu
+
 Built with ❤️ by a small team with big ideas.

@@ -9,8 +9,6 @@ It focuses on XML-driven configuration and a clean runtime architecture.
 
 ---
 
-
-
 ## Project Structure
 
 - `yaazhi-core`: Core abstractions and shared logic
@@ -22,7 +20,7 @@ It focuses on XML-driven configuration and a clean runtime architecture.
 ## Roadmap
 
 ✅ XML-based config loading  
-🔜 Integrate [`sqlx`](https://github.com/launchbadge/sqlx) for async DB interaction  
+🔜 Integrate [`sqlx`](https://github.com/launchbadge/sqlx)  for async DB interaction  
 🔜 Design and implement an **Entity Engine** similar to Moqui’s data layer
 
 ---
@@ -34,6 +32,8 @@ Feel free to explore the codebase and open issues or pull requests.
 
 ---
 
-# Discord https://discord.gg/4KUqWsrvVu
+## Join Our Community
+
+- **Discord**: [Click here to join our Discord server](https://discord.gg/4KUqWsrvVu) 
 
 Built with ❤️ by a small team with big ideas.

@@ -7,9 +7,6 @@ use yaazhi_core::xml::config::yaazhi_config::YaazhiConfig;
 /// Start the Yaazhi Web Server
 pub async fn start_server(config: YaazhiConfig) -> Result<(), Box<dyn std::error::Error>> {
 
-    // Initialize tracing (logging)
-    tracing_subscriber::fmt::init();
-   
     let web_config = &config.web_server;
     let bind_address = web_config
         .bind_address()

@@ -1,13 +1,11 @@
+// yaazhi-core/src/db/sqlite.rs
+
 use std::{path::PathBuf, time::Duration};
+use sqlx::sqlite::{SqliteConnectOptions, SqliteJournalMode, SqlitePool, SqlitePoolOptions};
+use tracing::info;
 
-use sqlx::sqlite::{
-    SqliteConnectOptions,
-    SqliteJournalMode,
-    SqlitePool,
-    SqlitePoolOptions
-};
-
-pub struct SqliteConfig{
+#[derive(Debug, Clone)]
+pub struct SqliteConfig {
     pub file_path: String,
     pub create_file: bool,
     pub read_only: bool,
@@ -20,31 +18,9 @@ pub struct SqliteConfig{
     pub logging_level: String,
 }
 
-
-fn default_runtime_dir() -> PathBuf {
-    PathBuf::from("yaazhi-runtime")
-}
-
-fn default_sqlite_db_path() -> PathBuf {
-    let runtime_dir = default_runtime_dir();
-    runtime_dir.join("db").join("sqlite").join("yaazhi.db")
-}
-
-fn ensure_db_dir_exists(db_path: &str) -> Result<(), std::io::Error> {
-    let db_dir = std::path::Path::new(db_path)
-        .parent()
-        .expect("Database path has no parent directory");
-
-    if !db_dir.exists() {
-        std::fs::create_dir_all(db_dir)?;
-    }
-
-    Ok(())
-}
-
 impl Default for SqliteConfig {
     fn default() -> Self {
-        SqliteConfig {
+        Self {
             file_path: default_sqlite_db_path().to_string_lossy().into_owned(),
             create_file: true,
             read_only: false,
@@ -57,12 +33,47 @@ impl Default for SqliteConfig {
             logging_level: "info".to_string(),
         }
     }
-    
 }
 
-pub async fn init_sqlite_pool(config: SqliteConfig ) -> Result<SqlitePool, sqlx::Error> {
+/// Returns the path to the workspace root
+fn workspace_root() -> PathBuf {
+    // Get the directory of the current crate's Cargo.toml
+    let manifest_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
 
-     ensure_db_dir_exists(&config.file_path)?;
+    // Go up one level to reach the workspace root
+    manifest_dir.parent().expect("Failed to find workspace root").to_path_buf()
+}
+
+/// Returns the path to the yaazhi-runtime folder
+fn default_runtime_dir() -> PathBuf {
+    workspace_root().join("yaazhi-runtime")
+}
+
+/// Returns the default SQLite DB path
+fn default_sqlite_db_path() -> PathBuf {
+    default_runtime_dir()
+        .join("db")
+        .join("sqlite")
+        .join("yaazhi.db")
+}
+
+/// Ensures parent directories exist for the DB file
+fn ensure_db_dir_exists(db_path: &str) -> Result<(), std::io::Error> {
+    let binding = PathBuf::from(db_path);
+    let db_dir = binding
+        .parent()
+        .expect("Database path has no parent directory");
+
+    if !db_dir.exists() {
+        std::fs::create_dir_all(db_dir)?;
+    }
+
+    Ok(())
+}
+
+/// Initialize SQLite connection pool
+pub async fn init_sqlite_pool(config: SqliteConfig) -> Result<SqlitePool, sqlx::Error> {
+    ensure_db_dir_exists(&config.file_path)?;
 
     let options = SqliteConnectOptions::new()
         .filename(&config.file_path)
@@ -70,7 +81,6 @@ pub async fn init_sqlite_pool(config: SqliteConfig ) -> Result<SqlitePool, sqlx:
         .create_if_missing(config.create_file)
         .read_only(config.read_only)
         .busy_timeout(Duration::from_secs(config.connect_timeout));
-
 
     let pool = SqlitePoolOptions::new()
         .max_connections(config.max_connections)
@@ -81,5 +91,15 @@ pub async fn init_sqlite_pool(config: SqliteConfig ) -> Result<SqlitePool, sqlx:
         .await?;
 
     Ok(pool)
+}
 
+pub async fn check_pool_connection(pool: &SqlitePool) -> Result<(), sqlx::Error> {
+    let row: (i64,) = sqlx::query_as("SELECT 1")
+        .fetch_one(pool)
+        .await?;
+
+    assert_eq!(row.0, 1);
+    info!("✅ Database connection successful!");
+
+    Ok(())
 }

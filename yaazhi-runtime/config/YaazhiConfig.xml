@@ -38,7 +38,7 @@
         </data-types>
 
         <connection name="sqlite_dev" type="sqlite">
-            <file-path value="/db/sqlite/yaazhi_dev.sqlite"/>
+            <file-path value="/db/sqlite/yaazhi_dev.db"/>
             <create-file value="true"/>
             <read-only value="false"/>
             <pool max="50" min="5">

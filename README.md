@@ -1,4 +1,4 @@
-# Yaazhi Framework
+# Yaazhi Web Framework
 
 ![Yaazhi Logo](/641554a6-52fa-47fd-b96f-a0da2b88ef64-removebg-preview%20(2).png)
 

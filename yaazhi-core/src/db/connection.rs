@@ -1,4 +1,4 @@
-use sqlx::{AnyPool, MySqlPool, PgPool, SqlitePool};
+use sqlx::{MySqlPool, PgPool, SqlitePool};
 
 use crate::db::sqlite::{init_sqlite_pool, SqliteConfig};
 

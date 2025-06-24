@@ -19,22 +19,22 @@
      <databases>
 
         <data-types>
-            <property name="id" sql-type="VARCHAR(64)"   />
-            <property name="id-long" sql-type="VARCHAR(255)" />
-            <property name="text-indicator" sql-type="CHAR(1)" />
-            <property name="text-short" sql-type="VARCHAR(63)" />
-            <property name="text-medium" sql-type="VARCHAR(255)" />
-            <property name="text-intermediate" sql-type="VARCHAR(1023)" />
-            <property name="text-long" sql-type="VARCHAR(4095)" />
-            <property name="text-very-long" sql-type="CLOB" />
-            <property name="binary-very-long" sql-type="BLOB" />
-            <property name="date" sql-type="DATE" />
-            <property name="date-time" sql-type="TIMESTAMP" />
-            <property name="number-integer" sql-type="NUMERIC(20,0)" />
-            <property name="number-decimal" sql-type="NUMERIC(26,6)" />
-            <property name="number-float" sql-type="DOUBLE" />
-            <property name="currency-amount" sql-type="NUMERIC(24,4)" />
-            <property name="currency-precise" sql-type="NUMERIC(25,5)" />
+            <property name="id" pg-sql-type="VARCHAR(64)" mysql-sql-type="VARCHAR(64)" sqlite-sql-type="TEXT"/>
+            <property name="id-long" pg-sql-type="VARCHAR(255)" mysql-sql-type="VARCHAR(255)" sqlite-sql-type="TEXT"/>
+            <property name="text-indicator" pg-sql-type="CHAR(1)" mysql-sql-type="CHAR(1)" sqlite-sql-type="TEXT"/>
+            <property name="text-short" pg-sql-type="VARCHAR(63)" mysql-sql-type="VARCHAR(63)" sqlite-sql-type="TEXT"/>
+            <property name="text-medium" pg-sql-type="VARCHAR(255)" mysql-sql-type="VARCHAR(255)" sqlite-sql-type="TEXT"/>
+            <property name="text-intermediate" pg-sql-type="VARCHAR(1023)" mysql-sql-type="VARCHAR(1023)" sqlite-sql-type="TEXT"/>
+            <property name="text-long" pg-sql-type="VARCHAR(4095)" mysql-sql-type="VARCHAR(4095)" sqlite-sql-type="TEXT"/>
+            <property name="text-very-long" pg-sql-type="TEXT" mysql-sql-type="LONGTEXT" sqlite-sql-type="TEXT"/>
+            <property name="binary-very-long" pg-sql-type="BYTEA" mysql-sql-type="LONGBLOB" sqlite-sql-type="BLOB"/>
+            <property name="date" pg-sql-type="DATE" mysql-sql-type="DATE" sqlite-sql-type="TEXT"/>
+            <property name="date-time" pg-sql-type="TIMESTAMP" mysql-sql-type="DATETIME" sqlite-sql-type="TEXT"/>
+            <property name="number-integer" pg-sql-type="BIGINT" mysql-sql-type="BIGINT" sqlite-sql-type="INTEGER"/>
+            <property name="number-decimal" pg-sql-type="NUMERIC(26,6)" mysql-sql-type="DECIMAL(26,6)" sqlite-sql-type="TEXT"/>
+            <property name="number-float" pg-sql-type="DOUBLE PRECISION" mysql-sql-type="DOUBLE" sqlite-sql-type="REAL"/>
+            <property name="currency-amount" pg-sql-type="NUMERIC(24,4)" mysql-sql-type="DECIMAL(24,4)" sqlite-sql-type="TEXT"/>
+            <property name="currency-precise" pg-sql-type="NUMERIC(25,5)" mysql-sql-type="DECIMAL(25,5)" sqlite-sql-type="TEXT"/>
         </data-types>
 
         <connection name="sqlite_dev" type="sqlite">

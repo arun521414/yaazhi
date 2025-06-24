@@ -1,7 +1,6 @@
-use actix_cors::Cors;
+
 use actix_web::{web, App, HttpResponse, HttpServer, Responder};
-use tracing::{error, info};
-use tracing_subscriber;
+use tracing::{info};
 use yaazhi_core::xml::config::yaazhi_config::YaazhiConfig;
 
 /// Start the Yaazhi Web Server

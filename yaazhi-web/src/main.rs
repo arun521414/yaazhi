@@ -1,4 +1,4 @@
-use yaazhi_core::xml::config::yaazhi_config::{self, load_config, YaazhiConfig};
+use yaazhi_core::xml::config::yaazhi_config::{load_config, YaazhiConfig};
 use yaazhi_core::db::{
     connection::Connection,
     sqlite::{SqliteConfig,check_pool_connection}
@@ -21,7 +21,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     let db_pool = Connection::new_sqlite_pool(sqlite_config).await?; 
 
-     check_pool_connection(&db_pool).await?;
+    check_pool_connection(&db_pool).await?;
 
     server::start_server(config).await
 }

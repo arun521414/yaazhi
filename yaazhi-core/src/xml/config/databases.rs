@@ -20,8 +20,12 @@ pub struct DataTypes {
 pub struct DataTypeProperty {
     #[serde(rename = "@name")]
     pub name: String,
-    #[serde(rename = "@sql-type")]
-    pub sql_type: String,
+    #[serde(rename = "@pg-sql-type")]
+    pub pg_sql_type: String,
+    #[serde(rename = "@mysql-sql-type")]
+    pub mysql_sql_type: String,
+    #[serde(rename = "@sqlite-sql-type")]
+    pub sqlite_sql_type: String,
 }
 
 #[derive(Debug, Deserialize)]
@@ -103,15 +107,6 @@ impl Databases {
     /// List all connection names
     pub fn list_connection_names(&self) -> Vec<&str> {
         self.connections.iter().map(|c| c.name.as_str()).collect()
-    }
-
-    /// Lookup SQL type for a data type name
-    pub fn sql_type_for(&self, data_type_name: &str) -> Option<&str> {
-        self.data_types
-            .properties
-            .iter()
-            .find(|p| p.name == data_type_name)
-            .map(|p| p.sql_type.as_str())
     }
 }
 

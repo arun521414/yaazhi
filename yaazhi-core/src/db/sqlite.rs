@@ -73,6 +73,7 @@ fn ensure_db_dir_exists(db_path: &str) -> Result<(), std::io::Error> {
 
 /// Initialize SQLite connection pool
 pub async fn init_sqlite_pool(config: SqliteConfig) -> Result<SqlitePool, sqlx::Error> {
+    
     ensure_db_dir_exists(&config.file_path)?;
 
     let options = SqliteConnectOptions::new()

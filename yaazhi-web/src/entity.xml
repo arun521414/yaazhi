@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entities>
+
+    <entity name="Party" module="mantle.party" >
+        <field name="userId" type="id" pk="true" />
+        <field name="username" type="text" />
+        <field name="email" type="text" />
+    </entity>
+
+</entities>
+ 

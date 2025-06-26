@@ -1,8 +1,16 @@
-use yaazhi_core::xml::config::yaazhi_config::{load_config, YaazhiConfig};
+use yaazhi_core::xml::config::{
+    yaazhi_config::YaazhiConfig,
+    config_loader::load_config
+};
 use yaazhi_core::db::{
     connection::Connection,
     sqlite::{SqliteConfig,check_pool_connection}
 };
+use yaazhi_core::xml::entity::{
+    entities_loader::load_entities,
+    entities::Entities
+};
+
 use std::error::Error;
 
 mod server;
@@ -22,6 +30,12 @@ async fn main() -> Result<(), Box<dyn Error>> {
     let db_pool = Connection::new_sqlite_pool(sqlite_config).await?; 
 
     check_pool_connection(&db_pool).await?;
+
+    let entity_path = "/home/arun/yaazhi-projects/yaazhi/yaazhi-web/src/entity.xml";
+    let entities: Entities = load_entities(entity_path)?;
+
+    println!("Loaded entities: {:?}", entities);
+
 
     server::start_server(config).await
 }

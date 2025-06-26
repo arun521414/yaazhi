@@ -1,7 +1,5 @@
 use serde::Deserialize;
 
-
-
 #[derive(Debug, Deserialize)]
 pub struct Entities {
     #[serde(rename = "entity")]
@@ -14,6 +12,8 @@ pub struct Entity {
     pub name: String,
     #[serde(rename = "@module")]
     pub module: String,
+    #[serde(rename = "@cache")]
+    pub cache: Option<bool>,
     #[serde(rename = "field")]
     pub fields: Vec<Field>,
 }
@@ -24,22 +24,8 @@ pub struct Field {
     pub name: String,
     #[serde(rename = "@type")]
     pub field_type: String,
-    #[serde(rename = "@pk")]
-    pub primary_key: bool,
-    #[serde(rename = "@unique")]
-    pub unique: bool,
-    #[serde(rename = "@nullable")]
-    pub null: bool,
-    #[serde(rename = "@default")]
-    pub default: Option<String>,
-    #[serde(rename = "@index")]
-    pub index: bool,
-    #[serde(rename = "@foreign-key")]
-    pub foreign_key: Option<String>,
-    #[serde(rename = "@foreign-key-on-delete")]
-    pub foreign_key_on_delete: Option<String>,
-    #[serde(rename = "@foreign-key-on-update")]
-    pub foreign_key_on_update: Option<String>,
-    #[serde(rename = "description")]
-    pub description: Option<String>,
+    #[serde(rename = "@is-pk")]
+    pub primary_key: Option<bool>,
 }
+
+

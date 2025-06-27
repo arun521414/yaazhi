@@ -20,7 +20,7 @@ It focuses on XML-driven configuration and a clean runtime architecture.
 ## Roadmap
 
 ✅ XML-based config loading  
-🔜 Integrate [`sqlx`](https://github.com/launchbadge/sqlx)  for async DB interaction  
+✅ Integrate [`sqlx`](https://github.com/launchbadge/sqlx)  for async DB interaction  
 🔜 Design and implement an **Entity Engine** similar to Moqui’s data layer
 
 ---
